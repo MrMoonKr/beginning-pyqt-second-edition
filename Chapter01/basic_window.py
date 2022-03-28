@@ -6,6 +6,7 @@ Featured in "Beginning PyQt - A Hands-on Approach to GUI Programming, 2nd Ed."
 import sys 
 from PyQt6.QtWidgets import QApplication, QWidget
 
+# print( sys.path )
 
 class EmptyWindow( QWidget ):
 

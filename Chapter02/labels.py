@@ -3,19 +3,27 @@ Written by Joshua Willman
 Featured in "Beginning PyQt - A Hands-on Approach to GUI Programming, 2nd Ed."
 """
 
-# Import necessary modules
 import sys 
 from PyQt6.QtWidgets import QApplication, QWidget, QLabel
 from PyQt6.QtGui import QPixmap
 
-class MainWindow(QWidget):
+#print( sys.path )
+#sys.path.append( r"D:/mySolutions2022Private/beginning-pyqt-second-edition" )
+#sys.path.append( r'../' )상대경로인지못함
 
-    def __init__(self):
+import common.widget_helpers as helpers
+
+
+class MainWindow( QWidget ):
+
+    def __init__( self ):
+        """ 생성자 """
         super().__init__()
         self.initializeUI()
+        helpers.center_window( self )
 
     def initializeUI(self):
-        """Set up the application's GUI."""
+        """ UI 초기화, 생성자에서 호출됨"""
         self.setGeometry(100, 100, 250, 250)
         self.setWindowTitle("QLabel Example")
 
@@ -28,7 +36,8 @@ class MainWindow(QWidget):
         hello_label.setText("Hello")
         hello_label.move(105, 15)
 
-        image = "images/world.png"
+        # image = "./images/world.png"
+        image = "Chapter02/images/world.png"
         try:
             with open(image):
                 world_label = QLabel(self)
@@ -37,6 +46,7 @@ class MainWindow(QWidget):
                 world_label.move(25, 40)
         except FileNotFoundError as error:
             print(f"Image not found.\nError: {error}")
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
