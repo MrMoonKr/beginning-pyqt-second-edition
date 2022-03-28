@@ -1,5 +1,20 @@
-# Beginning-PyQt--second-edition
-This repository accompanies [*Beginning PyQt-Second Edition*](https://link.springer.com/book/10.1007/978-1-4842-7999-1#toc) by Joshua Willman (Apress, 2022). 
+# Beginning-PyQt-Second-Edition
+This repository accompanies [*Beginning PyQt-Second Edition*](https://link.springer.com/book/10.1007/978-1-4842-7999-1#toc) by Joshua Willman ( Apress, 2022 ). 
+
+## 개발 환경 구축
+- VS Code
+- Python 3.10.1 ( 64bit )
+- PyQt6 6.2.3
+```
+python --version
+python -m pip --version
+python -m venv venv-beginning-pyqt6
+./venv-beginning-pyqt6/Scripts/Activate.ps1
+python -m pip install -r requirements.txt
+```
+
+## 책정보
+- 표지
 
 [comment]: #Beginning_PyQt-Second_Edition_cover
 ![Cover image](BeginningPyQt_2ndEd_JoshuaWillman.jpeg)
