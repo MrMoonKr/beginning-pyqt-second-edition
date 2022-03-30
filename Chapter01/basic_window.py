@@ -17,7 +17,7 @@ class EmptyWindow( QWidget ):
         self.moveToCenter()
 
     def initializeUI( self ):
-        """ UI 초기화, 생성자에서 호출됨"""
+        """ UI 초기화, 생성자에서 호출됨 """
         self.setGeometry( 200, 100, 800, 600 )
         self.setWindowTitle( "Chapter01-01 기본윈도우 생성 in PyQt" )
         self.show()
