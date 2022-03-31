@@ -30,7 +30,7 @@ class MainWindow( QWidget ):
     def setUpMainWindow( self ):
         """ 메인윈도우의 내부 구성하기 """
 
-        listfile = "e-books/community-listfile.txt"
+        listfile = "data/community-listfile.txt"
         listfile = os.path.join( os.getcwd(), listfile )
         id_name_map = {}
         name_id_map = {}

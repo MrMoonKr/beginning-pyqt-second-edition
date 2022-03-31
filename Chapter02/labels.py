@@ -24,7 +24,8 @@ class MainWindow( QWidget ):
 
     def initializeUI(self):
         """ UI 초기화, 생성자에서 호출됨"""
-        self.setGeometry(100, 100, 250, 250)
+        #self.setGeometry(100, 100, 250, 250)
+        self.setMinimumSize( 640, 480 )
         self.setWindowTitle("QLabel Example")
 
         self.setUpMainWindow()
@@ -37,13 +38,22 @@ class MainWindow( QWidget ):
         hello_label.move(105, 15)
 
         # image = "./images/world.png"
-        image = "Chapter02/images/world.png"
+        # image = "Chapter02/images/world.png"
+        image = "data\creature\humanmalekid\humanmalekidskinbrown.blp"
         try:
-            with open(image):
-                world_label = QLabel(self)
-                pixmap = QPixmap(image)
-                world_label.setPixmap(pixmap)
-                world_label.move(25, 40)
+            # with open(image):
+            #     world_label = QLabel(self)
+            #     pixmap = QPixmap(image)
+            #     world_label.setPixmap(pixmap)
+            #     world_label.move(25, 40)
+
+            from PIL.ImageQt import ImageQt
+            qim = ImageQt( image )
+            pix = QPixmap.fromImage( qim )
+            world_label = QLabel( self) 
+            world_label.setPixmap( pix )
+            world_label.move( 25, 40 )
+
         except FileNotFoundError as error:
             print(f"Image not found.\nError: {error}")
 
