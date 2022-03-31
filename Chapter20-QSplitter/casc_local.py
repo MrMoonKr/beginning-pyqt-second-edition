@@ -5,7 +5,6 @@
 
 import os
 import sys
-import PyQt6
 from PyQt6.QtWidgets import ( QApplication, QWidget, QTreeWidget, QTreeWidgetItem, QListWidget, QListWidgetItem, QVBoxLayout, QHBoxLayout, QSplitter )
 from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import ( Qt, QItemSelection )
