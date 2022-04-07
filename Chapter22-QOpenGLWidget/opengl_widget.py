@@ -41,6 +41,18 @@ class MainOpenGL( QOpenGLWidget ):
     def __init__( self ) -> None:
         super().__init__()
 
+    def mousePressEvent( self, a0: QMouseEvent ) -> None:
+        logger.debug( "mousePressEvent() : " + f"{a0.button()} , {a0.position()}, {a0.pos()}" )
+        return super().mousePressEvent(a0)
+
+    def mouseMoveEvent(self, a0: QMouseEvent) -> None:
+        logger.debug( "mouseMoveEvent() 호출됨" )
+        return super().mouseMoveEvent(a0)
+    
+    def mouseReleaseEvent(self, a0: QMouseEvent) -> None:
+        logger.debug( "mouseReleaseEvent() 호출됨" )
+        return super().mouseReleaseEvent(a0)
+
     def initializeGL( self ) -> None:
         self.profile = QOpenGLVersionProfile()
         self.profile.setVersion( 3, 3 )
@@ -139,6 +151,7 @@ class MainWindow( QWidget ):
 
         main_h_box = QHBoxLayout()
         main_h_box.addWidget( self.splitter )
+        main_h_box.setContentsMargins( 6, 6, 6, 6 )
         self.setLayout( main_h_box )
 
         self.show()
