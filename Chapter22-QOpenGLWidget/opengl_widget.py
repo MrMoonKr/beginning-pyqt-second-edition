@@ -41,6 +41,8 @@ class MainOpenGL( QOpenGLWidget ):
     def __init__( self ) -> None:
         super().__init__()
 
+        self.installEventFilter( self )
+
     def mousePressEvent( self, a0: QMouseEvent ) -> None:
         logger.debug( "mousePressEvent() : " + f"{a0.button()} , {a0.position()}, {a0.pos()}" )
         return super().mousePressEvent(a0)
@@ -52,6 +54,19 @@ class MainOpenGL( QOpenGLWidget ):
     def mouseReleaseEvent(self, a0: QMouseEvent) -> None:
         logger.debug( "mouseReleaseEvent() 호출됨" )
         return super().mouseReleaseEvent(a0)
+
+    def keyPressEvent(self, a0: QKeyEvent) -> None:
+        logger.debug( "MainOpenGL.keyPressEvent() 호출됨" )
+        return super().keyPressEvent(a0)
+
+    # def keyReleaseEvent(self, a0: QKeyEvent) -> None:
+    #     logger.debug( "keyReleaseEvent() 호출됨" )
+    #     return super().keyReleaseEvent(a0)
+
+    def eventFilter(self, a0: 'QObject', a1: 'QEvent') -> bool:
+        if a1.type() == QEvent.Type.KeyPress:
+            return
+        return super().eventFilter(a0, a1)
 
     def initializeGL( self ) -> None:
         self.profile = QOpenGLVersionProfile()
@@ -127,6 +142,8 @@ class MainWindow( QWidget ):
         self.setMinimumSize( 640, 480 )
         self.setWindowTitle( "OpenGL Widget" )
 
+        self.installEventFilter( self )
+
         self.tree_widget = QTreeWidget()
         #tree_widget.setColumnCount( 2 )
         self.tree_widget.setHeaderLabels( ["Assets"] )
@@ -136,6 +153,7 @@ class MainWindow( QWidget ):
         self.tree_widget.header().setSortIndicator( 0, Qt.SortOrder.AscendingOrder )
 
         self.opengl_widget = MainOpenGL()
+        #self.opengl_widget.installEventFilter( self )
 
         self.textedit_widget = QPlainTextEdit()
 
@@ -161,6 +179,18 @@ class MainWindow( QWidget ):
         logging.warning('that\'s not right')
         logging.error('foobar')
 
+    def keyPressEvent(self, a0: QKeyEvent) -> None:
+        logger.debug( "MainWindow.keyPressEvent() 호출됨" )
+        return super().keyPressEvent(a0)
+
+    def eventFilter(self, a0: 'QObject', a1: 'QEvent') -> bool:
+        if a1.type() == QEvent.Type.KeyPress:
+            return False
+        else:
+            if a1.type() == QEvent.Type.MouseButtonPress:
+                return False
+
+        return super().eventFilter(a0, a1)
 
 if __name__ == "__main__":
     app         = QApplication( sys.argv )
