@@ -2,8 +2,8 @@
 
 import sys
 
-from PyQt6.QtCore import ( Qt, QSize )
-from PyQt6.QtGui import ( QIcon, QSurfaceFormat )
+from PyQt6.QtCore import * # ( Qt, QSize )
+from PyQt6.QtGui import * # ( QIcon, QSurfaceFormat )
 from PyQt6.QtWidgets import * # ( QApplication )
 from PyQt6.QtOpenGL import * # ( QOpenGLWindow, QOpenGLVersionProfile )
 from PyQt6.QtOpenGLWidgets import * #( QOpenGLWidget )
@@ -109,6 +109,35 @@ class MainOpenGL( QOpenGLWidget ):
 
     def __init__( self ) -> None:
         super().__init__()
+
+        self.timer = QTimer()
+        self.timer.timeout.connect( self.Update )
+        #self.timer.start( int( 1000 / 60 )  )
+        self.timer.start( int( 0 )  )
+
+        self.elapsedTimer = QElapsedTimer()
+        self.elapsedTimer.start()
+
+        self.curr_time = self.elapsedTimer.elapsed()
+        self.prev_time = self.curr_time
+        self.frame_count = 0
+        self.frame_time = self.curr_time
+
+    def Update( self ):
+        #print( "Update() 호출됨" + f" : {self.elapsedTimer.elapsed()}" )
+
+        self.curr_time = self.elapsedTimer.elapsed()
+        self.delt_time = self.curr_time - self.prev_time
+        self.prev_time = self.curr_time
+
+        self.frame_count += 1
+        if ( self.curr_time - self.frame_time >= 1000 ):
+            print( f"FPS : {self.frame_count}" )
+            self.frame_count = 0
+            self.frame_time  = self.curr_time
+
+        self.update() # self.paintGL() 호출
+        pass
 
     def initializeGL( self ) -> None:
         self.profile = QOpenGLVersionProfile()
