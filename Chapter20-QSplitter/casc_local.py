@@ -29,6 +29,7 @@ class MainWindow( QWidget ):
     def setUpMainWindow( self ):
         """ 메인윈도우의 내부 구성하기 """
 
+        #https://github.com/wowdev/wow-listfile
         listfile = "data/community-listfile.txt"
         listfile = os.path.join( os.getcwd(), listfile )
         id_name_map = {}
