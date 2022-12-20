@@ -3,14 +3,14 @@ This repository accompanies [*Beginning PyQt-Second Edition*](https://link.sprin
 
 ## 개발 환경 구축
 - VS Code
-- Python 3.10.1 ( 64bit )
+- Python 3.10.2 ( 64bit )
 - PyQt6 6.2.3
 ```
 python --version
 python -m pip --version
-python -m venv venv-beginning-pyqt6
-./venv-beginning-pyqt6/Scripts/Activate.ps1
-python -m pip install -r requirements.txt
+python -m venv venv-local
+./venv-local/Scripts/Activate.ps1 or terminal reopen
+(venv-local) python -m pip install -r requirements.txt
 ```
 
 ## 책정보
